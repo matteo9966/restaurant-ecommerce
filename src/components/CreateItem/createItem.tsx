@@ -56,6 +56,7 @@ export const CreateItem = () => {
     name: "",
     description: "",
     imglink: "",
+    _id:''
   });
 
   useEffect(() => {
@@ -181,7 +182,7 @@ if(nameIsValid && descriptionIsvalid && isValidPrice){
       stato = <p>{"errore nel caricamento dell'immagine"}</p>
     }
     if (state.status === "success") {
-     stato = <img src={infoProdotto.imglink} alt="immagine non disponibile" />
+     stato = <img style={{maxHeight:"20rem"}} src={infoProdotto.imglink} alt="immagine non disponibile" />
     }
 
     return stato;

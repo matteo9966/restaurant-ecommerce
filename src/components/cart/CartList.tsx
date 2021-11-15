@@ -7,7 +7,7 @@ export const CartList = () => {
     return (
         <div className="col h-30">
           
-          {cartstore.ProductsList.map(prod=>{return <CartItem key={prod.id} cartProduct={prod}></CartItem>})}
+          {cartstore.ProductsList.map(prod=>{return <CartItem key={prod._id} cartProduct={prod}></CartItem>})}
             
         </div>
     )

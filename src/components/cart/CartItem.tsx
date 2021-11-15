@@ -8,7 +8,8 @@ export const CartItem: React.FC<{ cartProduct: CartProduct }> = (props) => {
    
   
     const dispatchAction = useRxjsStore()[1];
-    const onClickRemoveHandler = (id:number)=>{
+    
+    const onClickRemoveHandler = (id:string)=>{
        dispatchAction(cartActionsString.REMOVEITEMFROMCART,id);               
     }
 
@@ -34,7 +35,7 @@ export const CartItem: React.FC<{ cartProduct: CartProduct }> = (props) => {
         </div>
         <div className="col">
           {" "}
-          <a href="#home" onClick={onClickRemoveHandler.bind(null,props.cartProduct.id)}>-</a>
+          <a href="#home" onClick={onClickRemoveHandler.bind(null,props.cartProduct._id)}>-</a>
           <a href="#home" className="border">
             {props.cartProduct.quantity}
           </a>

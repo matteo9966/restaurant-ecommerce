@@ -44,7 +44,8 @@ export const useRxjsStore = (): [
   return [globalStore$.getValue(), updateGlobalStore]; // quello che viene restituito è il valore che ha globalStore, il valore che h
 };
 
-                                                      //init store prende lo slice di store da aggiungere allo store sostanzialmente
+
+//init store prende lo slice di store da aggiungere allo store sostanzialmente
 export const initStore = (store: {}, actions: Record<string, Function>) => {
   globalStore$.next({ ...globalStore$.getValue(), ...store });
   actionList = { ...actionList, ...actions };

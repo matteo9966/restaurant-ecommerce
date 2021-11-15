@@ -1,5 +1,6 @@
-import React from "react";
-
+import React,{useEffect} from "react";
+import { useFetch } from "./custom-hooks/http-fetch";
+ import { getAllProducts } from "./api/products-fetch";
 import "./App.css";
 import { useRxjsStore } from "./store-hook/storeRxjs";
 import { configureProductsStore } from "./store-hook/productsStoreRxjs";
@@ -19,10 +20,48 @@ import { CheckoutPage } from "./pages/CheckoutPage";
 
 // getAllProducts();
 
-configureProductsStore();
+// configureProductsStore();
 configureCartStore();
 
 function App() {
+  const {state:AllProductsState,sendRequest} = useFetch(getAllProducts)
+    
+  //creo e chiamo una funzione asincrona qui dentro!
+
+  useEffect(()=>{  
+    console.log("configuro tutti i prodotti!!")
+
+    // async function getProductsFromDB() {
+    //   await sendRequest();
+
+
+    // }
+    sendRequest()
+    // configureProductsStore();
+  },[])
+
+   useEffect(()=>{
+     console.log("lo stato dei prodotti:",AllProductsState);
+     if(AllProductsState.status==="success"){
+       if(AllProductsState.data?.data?.products){
+       
+          //  let prodList = [].concat(AllProductsState.data.data.products) 
+         
+           configureProductsStore(AllProductsState.data.data.products) // product
+
+       }
+       else{
+         configureProductsStore([]);
+       }
+     }
+   },[AllProductsState])
+
+
+
+  useEffect(()=>{configureCartStore()},[])
+
+
+
   const globalStore = useRxjsStore()[0];
   console.log(globalStore);
   return (

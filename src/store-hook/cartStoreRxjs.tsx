@@ -34,8 +34,8 @@ export const configureCartStore = () => {
       //2 se presente faccio quantity+1
       //3 non è presente faccio push new CartProduct con quantità = 1
 
-      const productId = payload.id;
-      const index = newCart.ProductsList.map((el) => el.id).findIndex(
+      const productId = payload._id;
+      const index = newCart.ProductsList.map((el) => el._id).findIndex(
         (id) => id === productId
       );
       if (index >= 0) {
@@ -51,9 +51,9 @@ export const configureCartStore = () => {
       return newStore; 
     },
 
-    [cartActionsString.REMOVEITEMFROMCART]:(store:GlobalStore,id:number):GlobalStore=>{
+    [cartActionsString.REMOVEITEMFROMCART]:(store:GlobalStore,id:string):GlobalStore=>{
       const newStore = {...store};
-      const item = newStore.cart.ProductsList.find(el=>el.id===id);
+      const item = newStore.cart.ProductsList.find(el=>el._id===id);
       if(item){
         if(item.quantity>1){
           item.quantity=item.quantity-1;

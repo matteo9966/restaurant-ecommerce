@@ -9,7 +9,7 @@ export const ProductsList = () => {
   return (
     <div className="container my-5">
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-         {store.products.map(product=>{return <ProductItem key={product.id} product={product}></ProductItem>})}
+         {store.products.map((product,index)=>{return <ProductItem key={index} product={product}></ProductItem>})}
       </div>
     </div>
   );

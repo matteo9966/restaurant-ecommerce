@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Product } from "../interfaces/Iproduct";
 import { resultType } from "./data-types";
-import { uploadImageUrl,createProductUrl } from "./urls";
+import { uploadImageUrl,createProductUrl,getAllproductsUrl } from "./urls";
 
 // const url='http://localhost:3001/api/v1/dummy'
 
@@ -26,6 +26,25 @@ import { uploadImageUrl,createProductUrl } from "./urls";
 //queste funzioni devono restituire tutte un oggetto
 
 //il risultato di ogni metodo deve essere un oggetto con data ed error.
+
+export const getAllProducts = async ()=>{
+  let result = {data:{},error:false}
+  try{
+    const products = await axios.get(getAllproductsUrl);
+    result.data = products.data;
+  
+    console.log("tutto andato a buon fine!,",products)
+    
+
+  }catch(error){
+    console.log(error)
+    result.error=true;
+  }
+
+  return result;
+
+}
+
 
 export const uploadProductImage = async (file: File): Promise<resultType> => {
   let result = { data: {}, error: false };
